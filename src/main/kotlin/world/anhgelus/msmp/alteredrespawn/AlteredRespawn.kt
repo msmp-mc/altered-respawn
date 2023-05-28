@@ -1,29 +1,17 @@
 package world.anhgelus.msmp.alteredrespawn
 
-import org.bukkit.plugin.java.JavaPlugin
-import world.anhgelus.msmp.alteredrespawn.utils.config.ConfigAPI
-import java.util.logging.Logger
+import world.anhgelus.msmp.msmpcore.PluginBase
 
-class AlteredRespawn: JavaPlugin() {
-    override fun onEnable() {
-        // init vars
-        LOGGER = logger
-        ConfigAPI.init(this)
+class AlteredRespawn: PluginBase() {
+    override val pluginName: String = "AlteredRespawn"
 
-        LOGGER.info("AlteredRespawn has been enabled!")
+    override fun disable() {
+
     }
 
-    override fun onDisable() {
-        LOGGER.info("AlteredRespawn has been disabled!")
+    override fun enable() {
+
     }
 
-    companion object {
-        lateinit var INSTANCE: AlteredRespawn
-            private set
-        lateinit var LOGGER: Logger
-
-        fun getInstance(): AlteredRespawn {
-            return INSTANCE
-        }
-    }
+    companion object: CompanionBase()
 }
