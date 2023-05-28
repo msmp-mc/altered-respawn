@@ -1,11 +1,15 @@
 package world.anhgelus.msmp.alteredrespawn
 
 import org.bukkit.plugin.java.JavaPlugin
+import world.anhgelus.msmp.alteredrespawn.utils.config.ConfigAPI
 import java.util.logging.Logger
 
 class AlteredRespawn: JavaPlugin() {
     override fun onEnable() {
+        // init vars
         LOGGER = logger
+        ConfigAPI.init(this)
+
         LOGGER.info("AlteredRespawn has been enabled!")
     }
 
