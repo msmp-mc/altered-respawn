@@ -3,3 +3,6 @@ version: '${version}'
 main: world.anhgelus.msmp.alteredrespawn.AlteredRespawn
 api-version: 1.19
 author: ["MSMP", "Anhgelus Morhtuuzh", "Akik4"]
+depend:
+  - MSMPCore
+  - kotlin-stdlib
