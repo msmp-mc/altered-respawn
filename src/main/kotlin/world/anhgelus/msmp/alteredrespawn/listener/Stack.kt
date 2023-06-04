@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta
 import world.anhgelus.msmp.alteredrespawn.DefaultCondition
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
-class pile {
+class Stack {
     fun death(event: EntityDamageEvent){
         if (event.entityType != EntityType.PLAYER) return
 

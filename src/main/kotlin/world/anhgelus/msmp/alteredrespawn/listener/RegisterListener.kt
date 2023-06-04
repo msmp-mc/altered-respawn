@@ -8,10 +8,10 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent
 object RegisterListener: Listener {
     @EventHandler
     fun onDamage(event: EntityDamageEvent){
-        pile().death(event)
+        Stack().death(event)
     }
     @EventHandler
     fun ForRespawn(event: PlayerInteractAtEntityEvent){
-        pile().respawn(event)
+        Stack().respawn(event)
     }
 }
