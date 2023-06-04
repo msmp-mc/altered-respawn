@@ -12,11 +12,9 @@ class AlteredRespawn: PluginBase() {
         INSTANCE = this
         LOGGER = logger
         Bukkit.getPluginManager().registerEvents(RegisterListener, this);
-        Bukkit.getLogger().info("Plugin initialisé")
     }
 
     override fun disable() {
-        dead = arrayOf()
     }
 
     companion object: CompanionBase()
