@@ -9,6 +9,8 @@ class AlteredRespawn: PluginBase() {
     override val pluginName: String = "AlteredRespawn"
 
     override fun enable() {
+        INSTANCE = this
+        LOGGER = logger
         Bukkit.getPluginManager().registerEvents(RegisterListener, this);
         Bukkit.getLogger().info("Plugin initialisé")
     }

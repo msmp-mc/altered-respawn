@@ -2,11 +2,12 @@ package world.anhgelus.msmp.alteredrespawn
 
 import org.bukkit.GameMode
 import org.bukkit.entity.Player
+import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
 class DefaultCondition {
     fun player(player: Player){
         if(player.isOp){
-            player.sendMessage("§7As administrator you gamemode hasn't been changed")
+            ChatHelper.sendInfoToPlayer(player, "As administrator you gamemode hasn't been changed")
         } else {
             player.gameMode = GameMode.SURVIVAL
         }
