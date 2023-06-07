@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import world.anhgelus.msmp.alteredrespawn.DefaultCondition
-import world.anhgelus.msmp.msmpcore.player.MPlayer
 import world.anhgelus.msmp.msmpcore.player.MPlayerManager
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
@@ -23,10 +22,10 @@ class Stack {
             return
         }
 
-        val item = ItemStack(Material.STRUCTURE_VOID)
-        val itemMeta: ItemMeta = item.itemMeta!!
-        itemMeta.setDisplayName("§d" + player.name + "'s STACK")
-        item.setItemMeta(itemMeta)
+        val stack = ItemStack(Material.STRUCTURE_VOID)
+        val stackMeta: ItemMeta = stack.itemMeta!!
+        stackMeta.setDisplayName("§d" + player.name + "'s STACK")
+        stack.setItemMeta(stackMeta)
 
         val mplayer = MPlayerManager.get(player)
         mplayer.died(event) { mplayer, event ->
@@ -37,13 +36,14 @@ class Stack {
             var n: Int = 0
 
             for (i in 0 until player.inventory.size) {
-                val item = player.inventory.contents[n]
-                if (item != null) {
-                    player.world.dropItemNaturally(player.location, item)
+                val items = player.inventory.contents[n]
+                n+=1
+                if (items != null) {
+                    player.world.dropItemNaturally(player.location, items)
                 }
             }
 
-            player.world.dropItem(player.location, item)
+            player.world.dropItem(player.location, stack)
             player.inventory.clear()
         }
     }
