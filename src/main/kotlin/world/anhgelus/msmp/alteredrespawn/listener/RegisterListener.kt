@@ -11,7 +11,7 @@ object RegisterListener: Listener {
         Stack().death(event)
     }
     @EventHandler
-    fun ForRespawn(event: PlayerInteractAtEntityEvent){
+    fun forRespawn(event: PlayerInteractAtEntityEvent){
         Stack().respawn(event)
     }
 }

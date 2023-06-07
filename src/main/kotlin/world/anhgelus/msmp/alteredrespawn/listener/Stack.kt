@@ -25,15 +25,15 @@ class Stack {
         val stack = ItemStack(Material.STRUCTURE_VOID)
         val stackMeta: ItemMeta = stack.itemMeta!!
         stackMeta.setDisplayName("§d" + player.name + "'s STACK")
-        stack.setItemMeta(stackMeta)
+        stack.itemMeta = stackMeta
 
         val mplayer = MPlayerManager.get(player)
-        mplayer.died(event) { mplayer, event ->
+        mplayer.died(event) { _, _ ->
             player.sendHurtAnimation(5F)
             event.isCancelled = true
             player.health = 20.0
             player.canPickupItems = false
-            var n: Int = 0
+            var n = 0
 
             for (i in 0 until player.inventory.size) {
                 val items = player.inventory.contents[n]
@@ -49,7 +49,7 @@ class Stack {
         }
     }
     fun respawn(event: PlayerInteractAtEntityEvent){
-        val player = event.player as Player
+        val player = event.player
         val mplayer = MPlayerManager.get(player)
 
         if (player.inventory.itemInMainHand.type != Material.STRUCTURE_VOID) {
@@ -71,3 +71,4 @@ class Stack {
         }
     }
 }
+
