@@ -37,7 +37,8 @@ class Stack {
 
             for (i in 0 until player.inventory.size) {
                 val items = player.inventory.contents[n]
-                n+=1
+                Bukkit.getLogger().info(items.toString())
+                n++
                 if (items != null) {
                     player.world.dropItemNaturally(player.location, items)
                 }
