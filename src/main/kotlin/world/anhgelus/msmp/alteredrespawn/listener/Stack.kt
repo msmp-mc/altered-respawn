@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta
 import world.anhgelus.msmp.msmpcore.player.MPlayerManager
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
-class Stack {
+object Stack {
     fun death(event: EntityDamageEvent){
         if (event.entityType != EntityType.PLAYER) return
 
