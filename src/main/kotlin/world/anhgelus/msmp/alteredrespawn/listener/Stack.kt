@@ -8,7 +8,6 @@ import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
-import world.anhgelus.msmp.alteredrespawn.DefaultCondition
 import world.anhgelus.msmp.msmpcore.player.MPlayerManager
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
@@ -65,7 +64,7 @@ class Stack {
             }
             mplayer.gainANewLife {
                 it.player.teleport(event.rightClicked.location)
-                DefaultCondition().player(it.player)
+                it.toDefaultCondition()
             }
 
         }
