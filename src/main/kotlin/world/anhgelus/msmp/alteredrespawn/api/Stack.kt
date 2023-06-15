@@ -143,22 +143,18 @@ object Stack {
             DyeColor.GRAY.color.asARGB() -> {
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 12.0
                 player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.2
-                player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(Int.MAX_VALUE, 5))
             }
             DyeColor.GREEN.color.asARGB() -> {
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 10.0
                 player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.3
-                player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(Int.MAX_VALUE, 10))
             }
             DyeColor.BLUE.color.asARGB() -> {
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 8.0
                 player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.4
-                player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(Int.MAX_VALUE, 15))
             }
             else-> {
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH)?.baseValue = 6.0
                 player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)?.baseValue = 0.5
-                player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(Int.MAX_VALUE, 20))
             }
         }
     }
