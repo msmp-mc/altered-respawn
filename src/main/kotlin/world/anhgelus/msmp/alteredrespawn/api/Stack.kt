@@ -3,6 +3,7 @@ package world.anhgelus.msmp.alteredrespawn.api
 import org.bukkit.*
 import org.bukkit.attribute.Attribute
 import org.bukkit.entity.ArmorStand
+import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockPlaceEvent
@@ -14,6 +15,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.potion.PotionType
+import org.bukkit.scheduler.BukkitTask
 import world.anhgelus.msmp.alteredrespawn.AlteredRespawn
 import world.anhgelus.msmp.msmpcore.MSMPCore
 import world.anhgelus.msmp.msmpcore.player.MPlayer
@@ -21,6 +23,7 @@ import world.anhgelus.msmp.msmpcore.player.MPlayerManager
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
 
 object Stack {
+    private val specateTo = mutableMapOf<Player, Player>()
     /**
      * Handle the death event
      *
@@ -44,7 +47,7 @@ object Stack {
          mplayer.died(event) { _, _ ->
             player.sendHurtAnimation(5F)
             event.isCancelled = true
-            player.health = 20.0
+            player.health = player.getAttribute(Attribute.GENERIC_MAX_HEALTH)!!.value
             player.canPickupItems = false
             var n = 0
 
@@ -113,6 +116,7 @@ object Stack {
                         respawned.addPotionEffect(PotionEffectType.WEAKNESS.createEffect(160, 5))
                         respawned.addPotionEffect(PotionEffectType.CONFUSION.createEffect(160, 1))
                         this.setTier(respawned, helmet.color.asARGB())
+
                     }
                 }
                 timer -= 1
@@ -151,4 +155,5 @@ object Stack {
             }
         }
     }
+
 }
