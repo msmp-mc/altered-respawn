@@ -77,14 +77,15 @@ object Stack {
      */
     fun respawnEvent(event: PlayerInteractAtEntityEvent){
         val player = event.player
+
+        if(event.rightClicked.type != EntityType.ARMOR_STAND) return
+        event.isCancelled = true
+        if (player.inventory.itemInMainHand.type != Material.STRUCTURE_VOID) return
+
         val name = player.inventory.itemInMainHand.itemMeta!!.displayName
-
-        if (player.inventory.itemInMainHand.type != Material.STRUCTURE_VOID) {
-            return
-        }
-
         val respawned = Bukkit.getPlayer(name.split("'")[0].removePrefix("§d"))!!
         val mplayer = MPlayerManager.get(respawned)
+
         if(mplayer.isAlive()){
             ChatHelper.sendInfoToPlayer(respawned, "This player is not dead!")
             return
