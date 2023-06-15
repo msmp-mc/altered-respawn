@@ -16,6 +16,7 @@ class AlteredRespawn: PluginBase() {
         INSTANCE = this
         LOGGER = logger
         Bukkit.getPluginManager().registerEvents(RegisterListener, this)
+        Stack.task()
     }
 
     override fun disable() {

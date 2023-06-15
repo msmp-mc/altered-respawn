@@ -21,6 +21,7 @@ import world.anhgelus.msmp.msmpcore.MSMPCore
 import world.anhgelus.msmp.msmpcore.player.MPlayer
 import world.anhgelus.msmp.msmpcore.player.MPlayerManager
 import world.anhgelus.msmp.msmpcore.utils.ChatHelper
+import kotlin.math.absoluteValue
 
 object Stack {
     private val specateTo = mutableMapOf<Player, Player>()
@@ -63,6 +64,7 @@ object Stack {
             player.inventory.clear()
             player.gameMode = GameMode.SPECTATOR
             player.world.strikeLightningEffect(player.location)
+            specate(player)
         }
     }
 
@@ -117,7 +119,11 @@ object Stack {
                         respawned.addPotionEffect(PotionEffectType.WEAKNESS.createEffect(160, 5))
                         respawned.addPotionEffect(PotionEffectType.CONFUSION.createEffect(160, 1))
                         this.setTier(respawned, helmet.color.asARGB())
+                        if(!specateTo.containsKey(it.player)) return@gainANewLife
+                        specateTo.remove(it.player, specateTo[it.player])
 
+                        //if(!specateTo.containsKey(player)) return@gainANewLife
+                        //Bukkit.broadcastMessage("Won a new life")
                     }
                 }
                 timer -= 1
@@ -156,5 +162,28 @@ object Stack {
             }
         }
     }
+    fun specate(player: Player){
 
+        player.getNearbyEntities(500.00,500.00,500.00).forEach {
+            if (it.type != EntityType.PLAYER) return@forEach
+            if((it as Player).gameMode != GameMode.SURVIVAL) return@forEach
+            player.teleport(it.location)
+            specateTo.put(player, it)
+        }
+    }
+
+    fun task(){
+        Bukkit.getScheduler().runTaskTimer(AlteredRespawn.INSTANCE, fun(){
+            Bukkit.getOnlinePlayers().forEach {
+                if(!specateTo.containsKey(it)) return@forEach
+                val spectatorLocation = it.location
+                val playerLocation = specateTo[it]!!.location
+                val x = (spectatorLocation.x - playerLocation.x).absoluteValue
+                val y = (spectatorLocation.y - playerLocation.y).absoluteValue
+                val z = (spectatorLocation.z - playerLocation.z).absoluteValue
+                if(!(x > 10.00 || y > 10.00 || z > 10.00)) return@forEach
+                it.teleport(playerLocation)
+            }
+        }, 0, 10L)
+    }
 }
